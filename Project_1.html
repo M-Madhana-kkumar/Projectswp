@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Relatives</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #4caf50;
+            color: white;
+        }
+        .relative-card {
+            border: 2px solid #4caf50;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px;
+            background-color: white;
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+            cursor: pointer;
+        }
+        .relative-card:hover {
+            transform: scale(1.05);
+        }
+        .photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        #modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border: 2px solid #4caf50;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        #modal-close {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+        #search-bar {
+            margin: 20px;
+            padding: 10px;
+            border: 2px solid #4caf50;
+            border-radius: 5px;
+            width: 80%;
+            max-width: 400px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>My Family Relatives</h1>
+        <p>Details and Photos</p>
+        <input type="text" id="search-bar" placeholder="Search relatives by name...">
+    </header>
+    <div class="container" id="relative-container">
+        <div class="relative-card" onclick="showModal('Madhana kkumar.M', 19, 'Engineering Student', 'Me')">
+            <h2>Madhana kkumar.M</h2>
+            <p>Age: 19</p>
+            <p>Occupation: Engineer Student</p>
+        </div>
+        <div class="relative-card" onclick="showModal('Sentamilan.M', 15, '10th Student', 'Brother')">
+            <h2>Sentamilan.M</h2>
+            <p>Age: 15</p>
+            <p>Occupation: 10th Student</p>
+        </div>
+        <div class="relative-card" onclick="showModal('Poongothai.M', 38, 'House Wife', 'Mother')">
+            <h2>Poongothai.M</h2>
+            <p>Age: 38</p>
+            <p>Occupation: House Wife</p>
+        </div>
+        <div class="relative-card" onclick="showModal('Mangala Ganesh.V', 45,'Manager','Father')">
+            <h2>Mangala Ganesh.V</h2>
+            <p>Age: 45</p>
+            <p>Occupation: Managerr</p>
+        </div>
+        <div class="relative-card" onclick="showModal('Muniyammal.V', 76 ,'House Wife', 'Grandmother - Father\'s Mother')">
+            <h2>Muniyammal.V</h2>
+            <p>Age: 30</p>
+            <p>Occupation: House Wife</p>
+        </div>
+        <div class="relative-card" onclick="showModal('Vadivelu.M', 78 ,'Press', 'Grandfather - Father\'s Father')">
+            <h2>Vadivelu.M</h2>
+            <p>Age: </p>
+            <p>Occupation: Press</p>
+        </div>
+        <div class="relative-card" onclick="showModal('Chitra.K', 57,'House Wife', 'Grandmother - Mother\'s Mother')">
+            <h2>Chitra.K</h2>
+            <p>Age: </p>
+            <p>Occupation: House Wife</p>
+        </div>
+        <div class="relative-card" onclick="showModal('Kannadasan.S', 67,'Bank Manger Rtd', 'Grandfather - Mother\'s Father')">
+            <h2>Kannadasan.S</h2>
+            <p>Age: </p>
+            <p>Occupation: Bank Manger Rtd</p>
+        </div>
+    </div>
+    <div id="modal">
+        <h2 id="modal-name"></h2>
+        <p id="modal-age"></p>
+        <p id="modal-occupation"></p>
+        <p id="modal-relationship"></p>
+        <button id="modal-close" onclick="closeModal()">Close</button>
+    </div>
+
+    <script>
+        function showModal(name, age, occupation, relationship) {
+            document.getElementById('modal-name').innerText = name;
+            document.getElementById('modal-age').innerText = 'Age: ' + age;
+            document.getElementById('modal-occupation').innerText = 'Occupation: ' + occupation;
+            document.getElementById('modal-relationship').innerText = 'Relationship: ' + relationship;
+            document.getElementById('modal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        document.getElementById('search-bar').addEventListener('input', function () {
+            const searchValue = this.value.toLowerCase();
+            const cards = document.querySelectorAll('.relative-card');
+            cards.forEach(card => {
+                const name = card.querySelector('h2').innerText.toLowerCase();
+                if (name.includes(searchValue)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
